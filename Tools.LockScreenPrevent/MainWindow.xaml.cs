@@ -14,10 +14,13 @@ namespace LockScreenPrevent
         private int PointLocationX = 0;
         private int PointLocationY = 0;
 
-        private int SecondTimerInterval = 0;//秒
+        //Auto run time Second
+        private int SecondTimerInterval = 0;
 
-        private int PointScreenStart = 0;//左上角
-        private int PointScreenEnd = 100;//右下角
+        //Left Top
+        private int PointScreenStart = 0;
+        //Right Buttom
+        private int PointScreenEnd = 100;
 
 
         public MainWindow()
@@ -27,7 +30,7 @@ namespace LockScreenPrevent
 
         private void btnTimerStart_Click(object sender, RoutedEventArgs e)
         {
-            //自动点击范围
+            //Range
             Int32.TryParse(tbScreenStart.Text.ToString(), out PointScreenStart);
             Int32.TryParse(tbScreenEnd.Text.ToString(), out PointScreenEnd);
             Int32.TryParse(tbTimerSecond.Text.ToString(), out SecondTimerInterval);
@@ -46,7 +49,6 @@ namespace LockScreenPrevent
         }
 
 
-        //Tick:定时器,每当经过多少时间发生函数
         private void movementTimer_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -56,7 +58,7 @@ namespace LockScreenPrevent
             int stepx = PointScreenStart + flagx;
             int stepy = PointScreenStart + flagy;
 
-            //设置焦点
+            //SetCurso
             SetCursorPos(stepx, stepy);
             mouse_event(MouseEventFlag.Move, stepx, stepy, 0, UIntPtr.Zero);
             mouse_event(MouseEventFlag.RightDown, 0, 0, 0, UIntPtr.Zero);
