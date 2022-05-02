@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace LockScreenPrevent
@@ -23,25 +11,37 @@ namespace LockScreenPrevent
     public partial class MainWindow : Window
     {
         private DispatcherTimer movementTimer = new DispatcherTimer();
-        private int PointLocationX = 10;
-        private int PointLocationY = 10;
+        private int PointLocationX = 0;
+        private int PointLocationY = 0;
+
+        private int SecondTimerInterval = 0;//秒
+
+        private int PointScreenStart = 0;//左上角
+        private int PointScreenEnd = 100;//右下角
+
 
         public MainWindow()
         {
             InitializeComponent();
-
-            movementTimer.Tick += movementTimer_Tick;
-            movementTimer.Interval = TimeSpan.FromSeconds(200);
-            
         }
 
         private void btnTimerStart_Click(object sender, RoutedEventArgs e)
         {
+            //自动点击范围
+            Int32.TryParse(tbScreenStart.Text.ToString(), out PointScreenStart);
+            Int32.TryParse(tbScreenEnd.Text.ToString(), out PointScreenEnd);
+            Int32.TryParse(tbTimerSecond.Text.ToString(), out SecondTimerInterval);
+
+            movementTimer.Tick += movementTimer_Tick;
+            movementTimer.Interval = TimeSpan.FromSeconds(SecondTimerInterval);
+
             movementTimer.Start();
         }
 
         private void btnTimerStop_Click(object sender, RoutedEventArgs e)
         {
+            movementTimer.Tick -= movementTimer_Tick;
+
             movementTimer.Stop();
         }
 
@@ -50,15 +50,18 @@ namespace LockScreenPrevent
         private void movementTimer_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
-            var flag = random.Next(30, 300);
+            var flagx = random.Next(PointScreenStart, PointScreenEnd);
+            var flagy = random.Next(PointScreenStart, PointScreenEnd);
 
-            int stepx = PointLocationX + flag;
-            int stepy = PointLocationY + flag;
+            int stepx = PointScreenStart + flagx;
+            int stepy = PointScreenStart + flagy;
 
+            //设置焦点
             SetCursorPos(stepx, stepy);
+            mouse_event(MouseEventFlag.Move, stepx, stepy, 0, UIntPtr.Zero);
             mouse_event(MouseEventFlag.RightDown, 0, 0, 0, UIntPtr.Zero);
             mouse_event(MouseEventFlag.RightUp, 0, 0, 0, UIntPtr.Zero);
-            mouse_event(MouseEventFlag.Move, stepx, stepy, 0, UIntPtr.Zero);
+           
         }
 
 

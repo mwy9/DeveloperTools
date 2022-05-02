@@ -5,10 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LockScreenPrevent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="360">
+        Title="MainWindow" Height="300" Width="380">
+    
     <Grid>
-        <Button x:Name="btnTimerStart" Content="Start Timer" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalAlignment="Bottom" Height="75" Width="150" Click="btnTimerStart_Click"/>
-        <Button x:Name="btnTimerStop" Content="Close Timer" HorizontalAlignment="Right" Margin="0,0,10,20" VerticalAlignment="Bottom" Height="75" Width="150" Click="btnTimerStop_Click"/>
+        <Button x:Name="btnTimerStart" Content="Start AutoClick" HorizontalAlignment="Left" Margin="10,0,0,20" VerticalAlignment="Bottom" Height="75" Width="150" Click="btnTimerStart_Click"/>
+        <Button x:Name="btnTimerStop" Content="Close AutoClick" HorizontalAlignment="Right" Margin="0,0,10,20" VerticalAlignment="Bottom" Height="75" Width="150" Click="btnTimerStop_Click"/>
+       
+       
+        <Grid>
+            <Label Content="定时点击时间(s)：" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.435" Width="100" Height="30"/>
+            <TextBox x:Name="tbTimerSecond" HorizontalAlignment="Left" Margin="125,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" Height="30"/>
 
+
+            <Label Content="屏幕范围(起点)：" HorizontalAlignment="Left" Margin="15,50,0,0" VerticalAlignment="Top"  RenderTransformOrigin="0.081,-0.435" Width="100" Height="30"/>
+            <TextBox x:Name="tbScreenStart" HorizontalAlignment="Left" Margin="125,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" Height="30"/>
+
+
+            <Label Content="屏幕范围(终点)：" HorizontalAlignment="Left" Margin="190,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.435" Width="100" Height="30"/>
+            <TextBox x:Name="tbScreenEnd" HorizontalAlignment="Left" Margin="290,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" Height="30"/>
+
+            
+        </Grid>
     </Grid>
 </Window>
