@@ -39,5 +39,17 @@ namespace QRCodeGenerate
 
             CreateQRCode.File2QRVideoHelper.Run(@"test.exe",strDirPath);
         }
+
+        private void Button21_Click(object sender, RoutedEventArgs e)
+        {
+            WPFBatch.MainWindow mainWindow = new WPFBatch.MainWindow();
+               mainWindow.Show();
+        }
+
+        private void Button22_Click(object sender, RoutedEventArgs e)
+        {
+            WpfGeneration.MainWindow mainWindow = new WpfGeneration.MainWindow();
+            mainWindow.Show();
+        }
     }
 }
