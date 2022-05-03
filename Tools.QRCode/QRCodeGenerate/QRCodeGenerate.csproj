@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="ThoughtWorks\" />
-    <Folder Include="zxing\File2TransToQR\" />
   </ItemGroup>
 
   <ItemGroup>
