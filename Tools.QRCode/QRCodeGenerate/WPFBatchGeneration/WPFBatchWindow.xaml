@@ -1,0 +1,78 @@
+﻿<Window x:Class="WPFBatch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UI="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
+        xmlns:masklayer="clr-namespace:ZdfFlatUI.Behaviors;assembly=WPF.UI"
+        Title="MainWindow" Height="400" Width="525">
+    <Window.Resources>
+        <PathGeometry x:Key="Icon_Close" Figures="M754.782 212.596 512 455.368 269.218 212.596c-13.081-13.081-34.29-13.081-47.369 0-13.081 13.081-13.081 34.288 0 47.367l242.782 242.771L221.849 745.507c-13.081 13.081-13.081 34.288 0 47.367 13.081 13.081 34.29 13.081 47.369 0L512 550.103l242.782 242.771c13.081 13.081 34.289 13.081 47.37 0 13.081-13.081 13.081-34.288 0-47.367L559.37 502.735l242.782-242.771c13.081-13.081 13.081-34.288 0-47.367C789.07 199.517 767.862 199.517 754.782 212.596z" />
+    </Window.Resources>
+    <Grid Height="400" Width="525">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <UI:FlatRadionButton Content="连续系列" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True" Checked="FlatRadionButton_Checked"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <UI:TitleTextBox Name="Prefix" Title="前缀:" Width="240" Height="27" Margin="5,15,10,0" HorizontalAlignment="Left"/>
+            <UI:TitleTextBox Name="Suffix" Title="后缀:" Width="240" Height="27" Margin="10,15,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="从:" Foreground="#657180" FontSize="17" Margin="5,5,0,5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <UI:IntegerUpDown Name="Start" Width="100" Height="30" Margin="10,0,0,0" Increment="1" VerticalAlignment="Center"
+                                          Maximum="100" Minimum="0" Value="0" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="到:"  Foreground="#657180" FontSize="17" Margin="130,5,0,5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <UI:IntegerUpDown Name="End" Width="100" Height="30" Margin="10,0,0,0" Increment="1" VerticalAlignment="Center"
+                                          Maximum="100" Minimum="0" Value="10" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <UI:FlatRadionButton Grid.Row="2" Content="随机系列" Margin="0,5,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="FlatRadionButton_Checked_1"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <UI:FlatRadionButton Name="Radion3" Grid.Row="2" Content="0-9" Margin="0,30,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="FlatRadionButton_Checked_2"/>
+            <UI:FlatRadionButton Name="Radion4" Grid.Row="2" Content="a-z" Margin="20,30,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="FlatRadionButton_Checked_3"/>
+            <UI:FlatRadionButton Name="Radion5" Grid.Row="2" Content="A-Z" Margin="20,30,0,5" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="FlatRadionButton_Checked_4"/>       
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <UI:TitleTextBox Name="PrefixRandom" Title="前缀:" Width="240" Height="27" Margin="5,0,10,0" HorizontalAlignment="Left"/>
+            <UI:TitleTextBox Name="SuffixRandom" Title="后缀:" Width="240" Height="27" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <TextBlock Text="计数:" Foreground="#657180" FontSize="17" Margin="5,5,0,5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <UI:IntegerUpDown Name="Count" Width="100" Height="30" Margin="10,0,0,0" Increment="1" VerticalAlignment="Center"
+                                          Maximum="100" Minimum="0" Value="10" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="长度:" Foreground="#657180" FontSize="17" Margin="110,5,0,5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <UI:IntegerUpDown Name="Long" Width="100" Height="30" Margin="10,0,0,0" Increment="1" VerticalAlignment="Center"
+                                          Maximum="100" Minimum="0" Value="5" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <UI:FlatButton Grid.Row="5" Width="85" Height="35" Margin="5,0,0,0" Background="#DA4453" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           Content="生成" CornerRadius="10" Foreground="White" MouseOverBackground="#ED5565" Click="FlatButton_Click"
+                           MouseOverBackground1="#ED5565" PressedBackground="#DA4453" />
+        
+        <!--<UI:FlatRadionButton Grid.Row="4" Content="未处理" Margin="0,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+        <UI:PopupEx Topmost="False" x:Name="maskLayer" PopupAnimation="Fade"
+                     masklayer:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}">
+            <Grid Width="400" Height="300" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Border Background="#FAFAFB" CornerRadius="5">
+                    <UI:TitleTextBox Name="Text" Title="生成数据:" Width="300" Height="200" Margin="0"
+                                     IsShowTitle="False" TextWrapping="Wrap" TitleOrientation="Vertical" />
+                    <!--<TextBlock Name="Text" Foreground="#657180" FontSize="24"  HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                </Border>
+                <UI:PathIconButton Background="Transparent" Width="30" Grid.Column="1"  x:Name="btnClose" Click="btnClose_Click"
+                                    PathData="{StaticResource Icon_Close}" VerticalAlignment="Top"
+                                    Margin="20,4,0,0" PathWidth="18" NormalPathColor="White"
+                                    MouseOverBackground="Transparent"
+                                    PressedBackground="Transparent"/>
+            </Grid>
+        </UI:PopupEx>
+    </Grid>
+    
+</Window>
