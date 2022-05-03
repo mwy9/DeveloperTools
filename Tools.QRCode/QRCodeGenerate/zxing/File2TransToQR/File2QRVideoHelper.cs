@@ -11,7 +11,7 @@ namespace CreateQRCode
 {
     public  class File2QRVideoHelper
     {
-        public static void Run(string nameFile)
+        public static void Run(string nameFile,string pathOutDir)
         {
             //文件转Byte
             var byteFileData = File2Byte.GetFileData(nameFile);
@@ -33,9 +33,7 @@ namespace CreateQRCode
                 Bitmap bitmapSplitedFile = CreateQRBitmap(newSplitedFile, 500, 500);
 
                 //保存到本地
-                string strDirPath = @"qrcode_image\";
-                Directory.CreateDirectory(strDirPath);
-                bitmapSplitedFile.Save(strDirPath + "images" + countQRCode + ".png", ImageFormat.Png);
+                bitmapSplitedFile.Save(pathOutDir + "images" + countQRCode + ".png", ImageFormat.Png);
             }
 
 
@@ -46,12 +44,6 @@ namespace CreateQRCode
 
 
 
-
-
-
-
-
-
         ///<summary>
         ///生成二维码  WriteToBitmapFile
         ///</summary>
@@ -59,8 +51,6 @@ namespace CreateQRCode
         ///<paramname="Contents"></param>
         public static Bitmap CreateQRBitmap(string Contents,int widthQR = 0, int heightQR = 0)
         {
-            Bitmap bitmap = new Bitmap(widthQR, heightQR, PixelFormat.Format32bppArgb);
-
             //创建QRCodeWriter对象
             QRCodeWriter writer = new QRCodeWriter();
 
@@ -68,6 +58,17 @@ namespace CreateQRCode
             //参数:1.二维码信息 2.图片类型 3.图片宽度 4.图片长度
             BitMatrix matrix = writer.encode(Contents, BarcodeFormat.QR_CODE, widthQR, heightQR);
 
+            Bitmap bitmap = BitMatrix2Bitmap(matrix);
+            return bitmap;
+        }
+
+
+        public static Bitmap BitMatrix2Bitmap(BitMatrix matrix)
+        {
+            int widthQR = matrix.Width;
+            int heightQR = matrix.Height;
+
+            Bitmap bitmap = new Bitmap(widthQR, heightQR, PixelFormat.Format32bppArgb);
 
             for (int x = 0; x < widthQR; x++)
             {
@@ -83,6 +84,14 @@ namespace CreateQRCode
 
 
 
+        public static BitMatrix Bitmap2BitMatrix(Bitmap bitmap)
+        {
+            int widthQR = bitmap.Width;
+            int heightQR = bitmap.Height;
+
+            return null;
+
+        }
 
         ///<summary>
         ///解码
@@ -90,13 +99,10 @@ namespace CreateQRCode
         ///<paramname="pictureBox1"></param>
         public static string Decode(Bitmap bitmapQR)
         {
-            /*
-            BarcodeReader reader = new BarcodeReader();
-            Result result = reader.Decode(bitmapQR);
-
-            var strContent = result.Text;
-            return strContent;
-            */
+            //QRCodeReader reader = new QRCodeReader();
+            //Result result = reader.decode(bitmapQR);
+            //var strContent = result.Text;
+            //return strContent;
 
             return "";
         }

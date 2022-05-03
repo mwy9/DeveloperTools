@@ -4,21 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*
-#region 将文件转化为字符串
-string fileStr = FileToBinary(@"C:\Users\wjh\Desktop\321.xlsx");
-MessageBox.Show(fileStr);
-#endregion
-#region 将字符串转为文件
-BinaryToFile(@"E:\123\123.txt", fileStr);
-#endregion
-*/
 namespace FileConvert
 {
     public class File2String
     {
         /// <summary>  
-        /// 将传进来的文件转换成字符串  
+        /// 将传进来的文件转换成字符串 
+        /// string fileStr = FileToBinary(@"321.txt");
         /// </summary>  
         /// <param name="FilePath">待处理的文件路径(本地或服务器)</param>  
         /// <returns></returns>
@@ -45,7 +37,7 @@ namespace FileConvert
         }
 
         /// <summary>  
-        /// 将传进来的字符串保存为文件  
+        /// 将传进来的字符串保存为文件:BinaryToFile(@"123.txt", fileStr); 
         /// </summary>  
         /// <param name="path">需要保存的位置路径</param>  
         /// <param name="binary">需要转换的字符串</param>  

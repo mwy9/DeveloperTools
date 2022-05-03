@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,15 +26,18 @@ namespace QRCodeGenerate
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
             QRCodeGenerate.ThoughtWorks.MainWindow mainWindow = new ThoughtWorks.MainWindow();
             mainWindow.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            CreateQRCode.File2QRVideoHelper.Run(@"C:\AllWorkspace\3rdparty\0workspace\qrcode\000.exe");
+            string strDirPath = @"qrcode_image\";
+            Directory.CreateDirectory(strDirPath);
+
+            CreateQRCode.File2QRVideoHelper.Run(@"test.exe",strDirPath);
         }
     }
 }
