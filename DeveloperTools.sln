@@ -11,9 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockScreenPrevent", "Tools.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QRCodeGenerate", "Tools.QRCode\QRCodeGenerate\QRCodeGenerate.csproj", "{C4E9EF60-0AC3-40C8-B5EA-3D23F71AAFC4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools.FileSystem", "Tools.FileSystem", "{7A3DCE09-4415-4D44-83EC-D6C5C0A1690F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools.SystemTool", "Tools.SystemTool", "{7A3DCE09-4415-4D44-83EC-D6C5C0A1690F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipBoardMonitorSave", "Tools.SystemTool\ClipBoardMonitorSave\ClipBoardMonitorSave.csproj", "{6B5B1266-ED74-4931-8598-77E5114F15F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClipBoardMonitorSave", "Tools.SystemTool\ClipBoardMonitorSave\ClipBoardMonitorSave.csproj", "{6B5B1266-ED74-4931-8598-77E5114F15F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{797C36B6-AF44-412E-BD9E-155A74CADCE8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools.FileSystem", "Tools.FileSystem", "{52AF4F07-D1D0-4C76-835E-B792A73CE5B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
