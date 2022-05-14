@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CreateQRCode;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace QRCodeGenerate
 {
@@ -34,10 +23,18 @@ namespace QRCodeGenerate
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            string strDirPath = @"qrcode_image\";
-            Directory.CreateDirectory(strDirPath);
+            string pathFile = @"images6.7z";
+            string dirOutput = @"qrcode_image\";
 
-            CreateQRCode.File2QRVideoHelper.Run(@"test.exe",strDirPath);
+            //已存在则删除后创建
+            if(Directory.Exists(dirOutput))
+            {
+                Directory.Delete(dirOutput,true);
+            }
+            Thread.Sleep(30);
+            Directory.CreateDirectory(dirOutput);
+
+            File2QRHelper.Run(pathFile, dirOutput);
         }
 
         private void Button21_Click(object sender, RoutedEventArgs e)
