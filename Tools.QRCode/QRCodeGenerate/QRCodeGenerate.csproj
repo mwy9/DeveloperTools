@@ -16,10 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.1" />
     <PackageReference Include="ThoughtWorks.QRCode.Standard" Version="1.0.1.6" />
     <PackageReference Include="ZXing.Net" Version="0.16.8" />
-    <PackageReference Include="ZXing.Net.Bindings.ImageSharp" Version="0.16.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\LibraryStander.FileToQRVideo\LibraryStander.FileToQRVideo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

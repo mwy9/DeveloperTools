@@ -1,5 +1,9 @@
 ﻿using CreateQRCode;
+using LibraryStander.FileToQRVideo;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 
@@ -23,18 +27,7 @@ namespace QRCodeGenerate
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            string pathFile = @"images6.7z";
-            string dirOutput = @"qrcode_image\";
-
-            //已存在则删除后创建
-            if(Directory.Exists(dirOutput))
-            {
-                Directory.Delete(dirOutput,true);
-            }
-            Thread.Sleep(30);
-            Directory.CreateDirectory(dirOutput);
-
-            File2QRHelper.Run(pathFile, dirOutput);
+           
         }
 
         private void Button21_Click(object sender, RoutedEventArgs e)

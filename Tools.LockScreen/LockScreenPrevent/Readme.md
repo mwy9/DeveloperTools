@@ -1,0 +1,2 @@
+﻿LockScreenPrevent
+设置区域及定时时间，自动随机点击屏幕阻止锁屏

@@ -7,9 +7,8 @@ using System.Windows.Media.Imaging;
 
 namespace FileConvert
 {
-    internal class BitmapConvertHelper
+    public class BitmapConvertHelper
     {
-
         public static byte[] ToByteArray(Image img)
         {
             byte[] byteArray = new byte[0];

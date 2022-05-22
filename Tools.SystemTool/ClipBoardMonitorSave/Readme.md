@@ -1,0 +1,2 @@
+﻿ClipBoardMonitorSave
+监控剪切板内容，并保存成文件
