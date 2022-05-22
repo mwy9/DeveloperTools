@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LibraryStander.FileToQRVideo\LibraryStander.FileToQRVideo.csproj" />
+    <ProjectReference Include="..\LibraryStander.FileToQRVideo\LibraryStander.FileToQRVideo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -105,7 +105,11 @@ namespace LibraryStander.FileToQRVideo
                 bitmapSplitedFile.Save(dirOutputTemp + QRImagePreName + countQRCode + QRImageType, ImageFormat.Png);
             }
 
-            string pathOutVideo = Guid.NewGuid().ToString() + QRVideoType;
+
+
+            //FFMpeg合成视频
+            string nameOutVideo = Guid.NewGuid().ToString() + QRVideoType;
+            string pathOutVideo = Path.GetFullPath(dirOutput) + nameOutVideo;
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(" -r ");
@@ -113,13 +117,37 @@ namespace LibraryStander.FileToQRVideo
             stringBuilder.Append(" -f image2 -i ");
             stringBuilder.Append(Path.GetFullPath(dirOutputTemp) + QRImagePreName);
             stringBuilder.Append("%d.png -c:v libx264 ");
-            stringBuilder.Append(Path.GetFullPath(dirOutput) + pathOutVideo);
+            stringBuilder.Append(pathOutVideo);
             stringBuilder.Append("");
 
-
             string param = stringBuilder.ToString();
-
             TransImageToVideo(dirOutput, param);
+
+
+            //FFMpeg拆分视频
+            /*
+            ffmpeg -i test.mp4 -r 10 -f image2 %05d.jpg
+            -i : 指定输入文件
+            -r : 帧数 10
+            -f : 指定格式化的格式为image2
+            image2后面跟着的是文件名
+            %5d：以为5位数按正序编号
+            */
+            StringBuilder stringBuilderToImage = new StringBuilder();
+            stringBuilderToImage.Append(" -i ");
+            stringBuilderToImage.Append(pathOutVideo);
+
+            stringBuilderToImage.Append(" -r ");
+            stringBuilderToImage.Append(QRVideoFrame);
+            stringBuilderToImage.Append(" -f image2 ");
+            stringBuilderToImage.Append("%05d.png ");
+
+            string paramToImage = stringBuilderToImage.ToString();
+            TransImageToVideo(dirOutput, paramToImage);
+
+
+            //读取所有文件进行解码
+
         }
 
 
@@ -170,7 +198,7 @@ namespace LibraryStander.FileToQRVideo
 
 
 
-        //FFMpeg合成视频
+       
         public static void TransImageToVideo(string dirOutput, string strParam)
         {
             Process process = new Process();
@@ -182,6 +210,10 @@ namespace LibraryStander.FileToQRVideo
             process.Start();
             process.WaitForExit();
         }
+
+
+
+
 
 
 
